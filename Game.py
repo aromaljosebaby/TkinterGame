@@ -7,6 +7,7 @@ class Player:
         this.x = this.randomPoz(N_X)
         this.y = this.randomPoz(N_Y)
         this.color = color
+        this.draw()
 
     def draw(this):
         this.body = canvas.create_oval((this.x, this.y),
@@ -18,6 +19,18 @@ class Player:
 
     def repaint(this, x, y):
         canvas.move(this.body, x, y)
+
+class Exit(Player):
+    def __init__(this):
+        super().__init__("yellow")
+
+class Enemy(Player):
+    def __init__(this):
+        super().__init__("red")
+
+class Hero(Player):
+    def __init__(this):
+        super().__init__("green")
 
     def checkPos(this, other):
         return ((this.x == other.x) and (this.y == other.y))
@@ -45,18 +58,22 @@ def endGame():
         print("Game over")
         print("You won!!!")
 
+def addEnemies():
+    for i in range(6):
+        enemy = Enemy()
+        enemies_s.append(enemy)
 
 
 master = tk.Tk()
 step = 60
 N_X = 10
 N_Y = 10
+enemies_s = []
 canvas = tk.Canvas(master, bg="blue", height = step*N_X, width=step*N_Y)
 
-player = Player("green")
-player.draw()
-exit_g = Player("yellow")
-exit_g.draw()
+addEnemies()
+exit_g = Exit()
+player = Hero()
 
 canvas.pack()
 master.bind("<KeyPress>", keyPress)
