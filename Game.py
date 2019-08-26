@@ -60,13 +60,8 @@ class Hero(Player):
             this.x = this.randomPoz(N_X)
             this.y = this.randomPoz(N_Y)
         Player.objects.add((this.x, this.y))
-        print("add image")
-        print(this.x, this.y)
-        print(canvas)
-        this.body = canvas.create_image((this.x, this.y), image=player_image, anchor="nw")
-                #this.body = canvas.create_oval((this.x, this.y),
-        #                     (this.x+step, this.y+step),
-        #                      fill="green")
+        this.body = canvas.create_image((this.x, this.y),
+                                        image=player_image, anchor="nw")
 
 
     def checkPos(this, other):
@@ -128,8 +123,6 @@ addEnemies()
 exit_g = Exit()
 player = Hero(canvas)
 
-#player_image = tk.PhotoImage(file="images/catcher.gif")
-#canvas.create_image(0, 0, image=player_image, anchor="nw")
         
 
 canvas.pack()
